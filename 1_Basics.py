@@ -9,6 +9,7 @@ y_data = [2.0, 4.0, 6.0]
 def forward(x):
     return x * w
 
+print(zip(x_data, y_data))
 
 # Loss function
 def loss(x, y):
@@ -41,4 +42,5 @@ for w in np.arange(0.0, 4.1, 0.1):
 plt.plot(w_list, mse_list)
 plt.ylabel('Loss')
 plt.xlabel('w')
-plt.show()
+# plt.show()
+plt.savefig("1_Basics.png")
