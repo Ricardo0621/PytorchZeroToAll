@@ -5,14 +5,19 @@ from torch import tensor
 x_data = tensor([[1.0], [2.0], [3.0]])
 y_data = tensor([[2.0], [4.0], [6.0]])
 
+# Step 1: Design the Model using classes
+# Step 2: Define and loss function and optimizer
+# Step 3: Train your model
 
 class Model(nn.Module):
     def __init__(self):
         """
         In the constructor we instantiate two nn.Linear module
         """
+        # Initializing the Model with the class
         super(Model, self).__init__()
-        self.linear = torch.nn.Linear(1, 1)  # One in and one out
+        # torch.nn.Linear applies a Linear transformation. The first parameter is the size of each input sample. The second is the size of the output sample
+        self.linear = torch.nn.Linear(1, 1)
 
     def forward(self, x):
         """
