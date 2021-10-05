@@ -9,7 +9,8 @@ y_data = [2.0, 4.0, 6.0]
 def forward(x):
     return x * w
 
-print(zip(x_data, y_data))
+# The zip fucntion allows you to iterate in parallel. It The takes iterables (can be zero or more), aggregates them in a tuple, and returns it.
+print(list(zip(x_data, y_data)))
 
 # Loss function
 def loss(x, y):
