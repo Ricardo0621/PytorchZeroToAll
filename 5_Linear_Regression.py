@@ -3,12 +3,12 @@ from torch import nn
 from torch import tensor
 
 # x_data is the number of hours studied
-x_data = tensor([[1.0], [2.0], [3.0]])
+x_data = tensor([[1.0], [2.0], [3.0], [4.0]])
 # y_data is the number of points obtained
-y_data = tensor([[2.0], [4.0], [6.0]])
+y_data = tensor([[3.0], [4.0], [5.0], [6.0]])
 # e.g: 1 hour of study -> 2 points. 2 hours of study -> 4 points usw
 # hours_of_study is the parameter we pass on. What we want to predict is our score
-hours_of_study = 4.0
+hours_of_study = 5.0
 
 # Steps to create a Neural Network
 # Step 1: Design the Model using classes
@@ -43,8 +43,8 @@ model = Model()
 # nn.Linear modules which are members of the model.
 loss_function = torch.nn.MSELoss(reduction='sum')
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
-for name in model.named_parameters():
-    print (name)
+# for name in model.named_parameters():
+#     print (name)
 # Other optimizers: torch.optim.Adagrad, torch.optim.Adam, torch.optim.Adamax, torch.optim.ASGD, torch.optim.LBFGS, torch.optim.RMSprop, torch.optim.Rprop, torch.optim.SGD
 
 # Training loop
@@ -55,7 +55,7 @@ for epoch in range(500):
     # 2) Compute and print loss
     # Both y_pred and y_data are tensors
     loss = loss_function(y_pred, y_data)
-    # print(f'Epoch: {epoch} | Loss: {loss.item()} ')
+    print(f'Epoch: {epoch} | Loss: {loss.item()} ')
 
     # Inside the training loop, optimization happens in three steps:
     # Call optimizer.zero_grad() to reset the gradients of model parameters. Gradients by default add up; to prevent double-counting, we explicitly zero them at each iteration.
