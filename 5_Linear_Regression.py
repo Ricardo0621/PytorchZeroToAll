@@ -5,7 +5,7 @@ from torch import tensor
 # x_data is the number of hours studied
 x_data = tensor([[1.0], [2.0], [3.0], [4.0]])
 # y_data is the number of points obtained
-y_data = tensor([[3.0], [6.0], [9.0], [12.0]])
+y_data = tensor([[3.0], [5.0], [7.0], [9.0]])
 # e.g: 1 hour of study -> 2 points. 2 hours of study -> 4 points usw
 # hours_of_study is the parameter we pass on. What we want to predict is our score
 hours_of_study = 5.0
