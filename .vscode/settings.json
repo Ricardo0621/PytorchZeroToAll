@@ -1,3 +1,4 @@
 {
-    "json.maxItemsComputed": 50000
+    "json.maxItemsComputed": 50000,
+    "editor.bracketPairColorization.enabled": true
 }
