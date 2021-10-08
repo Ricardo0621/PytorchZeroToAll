@@ -1,9 +1,15 @@
 from torch import nn, optim, from_numpy
 import numpy as np
 
+
+# Load the file
 xy = np.loadtxt('data/diabetes.csv', delimiter=',', dtype=np.float32)
-x_data = from_numpy(xy[:, 0:-1])
+# Both x_data and y_data are Tensors
+# Takes everything ut the last column
+x_data = from_numpy(xy[:, 0:-1]) 
+# Takes the last column
 y_data = from_numpy(xy[:, [-1]])
+# print(y_data)
 print(f'X\'s shape: {x_data.shape} | Y\'s shape: {y_data.shape}')
 
 
@@ -20,6 +26,7 @@ class Model(nn.Module):
         self.l1 = nn.Linear(8, 6)
         self.l2 = nn.Linear(6, 4)
         self.l3 = nn.Linear(4, 1)
+        # The output is a 8x1 matrix
 
         self.sigmoid = nn.Sigmoid()
 
@@ -40,18 +47,23 @@ model = Model()
 
 
 # Construct our loss function and an Optimizer. The call to model.parameters()
-# in the SGD constructor will contain the learnable parameters of the two
+# in the SGD constructor will contain the learnable parameters of the three
 # nn.Linear modules which are members of the model.
-criterion = nn.BCELoss(reduction='mean')
-optimizer = optim.SGD(model.parameters(), lr=0.1)
-
+# BCE -> Binary cross enthropy
+loss_function = nn.BCELoss(reduction='mean')
+# Trying out the different optimizers
+# 0.6447 SGD vs 0.4456 Rprop vs 0.4351 Adam
+# optimizer = optim.SGD(model.parameters(), lr=0.1)
+# Rprop stands for Resilient Propagation. Rprop is a popular gradient descent algorithm that only uses the signs of gradients to compute updates
+# optimizer = optim.Rprop(model.parameters(), lr=0.1)
+optimizer = optim.Adam(model.parameters(), lr=0.1)
 # Training loop
 for epoch in range(100):
     # Forward pass: Compute predicted y by passing x to the model
     y_pred = model(x_data)
 
     # Compute and print loss
-    loss = criterion(y_pred, y_data)
+    loss = loss_function(y_pred, y_data)
     print(f'Epoch: {epoch + 1}/100 | Loss: {loss.item():.4f}')
 
     # Zero gradients, perform a backward pass, and update the weights.
